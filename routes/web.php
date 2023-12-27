@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TripController;
+use App\Http\Controllers\TicketController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,20 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/trips', [TripController::class, 'index']);
+
+
+Route::get('/trips/create', [TripController::class, 'create']);
+
+
+Route::post('/trips', [TripController::class, 'store']);
+
+Route::get('/tickets', [TicketController::class, 'index']);
+
+
+Route::post('/tickets/purchase', [TicketController::class, 'purchase']);
+
+
+Route::get('/user/{user}/tickets', [TicketController::class, 'show']);
+
+Route::delete('/tickets/{ticket}', [TicketController::class, 'cancelTicket']);
